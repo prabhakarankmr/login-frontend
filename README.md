@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Login Frontend - Next.js Application
 
-## Getting Started
+A modern, responsive login and signup frontend built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🔐 Secure user authentication (login/signup)
+- 🎨 Modern, responsive UI design
+- ✅ Form validation with real-time feedback
+- 🔄 Automatic token refresh
+- 📱 Mobile-friendly interface
+- 🚀 Built with Next.js 15.3.4 and TypeScript
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tools Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project leverages the following key technologies and libraries:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 15.3.4**: A React framework for building full-stack web applications.
+- **React 19.0.0 & React DOM 19.0.0**: JavaScript libraries for building user interfaces.
+- **TypeScript 5**: A strongly typed superset of JavaScript that compiles to plain JavaScript.
+- **Tailwind CSS 4.1.10**: A utility-first CSS framework for rapidly building custom designs.
+- **`@hookform/resolvers` 5.1.1**: Integrates schema validation libraries with React Hook Form.
+- **`axios` 1.10.0**: A promise-based HTTP client for the browser and Node.js.
+- **`js-cookie` 3.0.5**: A simple, lightweight JavaScript API for handling browser cookies.
+- **`react-hook-form` 7.58.1**: A performant, flexible, and extensible forms library for React.
+- **`zod` 3.25.67**: A TypeScript-first schema declaration and validation library.
+- **ESLint 9**: For identifying and reporting on patterns found in ECMAScript/JavaScript code.
+- **PostCSS 8.5.6 & Autoprefixer 10.4.21**: Tools for transforming CSS with JavaScript.
 
-## Learn More
+## Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 18.0 or higher
+- npm or yarn package manager
+- Backend API running (see `login-backend` repository for setup instructions)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/login-frontend.git
+    cd login-frontend
+    ```
 
-## Deploy on Vercel
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  Set up environment variables:
+    ```bash
+    cp .env.example .env.local
+    ```
+    Edit `.env.local` and update the `NEXT_PUBLIC_API_URL` to point to your backend API.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+
+5.  Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Environment Variables
+
+| Variable              | Description     | Default             |
+| :-------------------- | :-------------- | :------------------ |
+| `NEXT_PUBLIC_API_URL` | Backend API URL | `http://localhost:3001` |
+
+## Available Scripts
+
+-   `npm run dev` - Starts the development server with Turbopack.
+-   `npm run build` - Builds the application for production.
+-   `npm run start` - Starts the Next.js production server.
+-   `npm run lint` - Runs ESLint to check for code quality issues.
+
+## Future Scope
+
+This project provides a solid foundation for a login and signup system. Future enhancements could include:
+
+-   **Two-Factor Authentication (2FA)**: Implement additional security layers for user logins.
+-   **Social Logins**: Integrate authentication via Google, GitHub, Facebook, etc.
+-   **Password Reset Functionality**: Add a secure way for users to reset forgotten passwords.
+-   **User Profile Management**: Allow users to view and update their profile information.
+-   **Role-Based Access Control (RBAC)**: Implement different user roles with varying permissions.
+-   **Email Verification**: Send verification emails upon registration to confirm user identity.
+-   **Improved UI/UX**: Further refine the user interface and experience with more animations, transitions, and accessibility features.
+-   **Unit and Integration Tests**: Expand test coverage for both frontend components and API integrations.
+-   **Containerization**: Dockerize the application for easier deployment and scalability.
+-   **CI/CD Pipeline Enhancements**: Automate deployment to various environments (staging, production).
+
+## Contributing
+
+Contributions are welcome! Please feel free to fork the repository, create a feature branch, and submit a pull request.
+
+## License
+
+This project is open-source and available under the MIT License.
+
+---
+
+**Author**: Prabha
+
+
