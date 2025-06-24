@@ -18,7 +18,7 @@ export const LoginForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState<string>('');
   const router = useRouter();
-  
+
   const {
     register,
     handleSubmit,
@@ -26,19 +26,17 @@ export const LoginForm: React.FC = () => {
   } = useForm<LoginCredentials>({
     resolver: zodResolver(loginSchema),
   });
-  
+
   const onSubmit = async (data: LoginCredentials) => {
     setIsLoading(true);
     setApiError('');
-    
+
     try {
       const response = await authApi.login(data);
-      
-      // Store tokens and user data
+
       setAuthTokens(response.accessToken, response.refreshToken);
       setUserData(response.user);
-      
-      // Redirect to dashboard
+
       router.push('/dashboard');
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
@@ -47,50 +45,65 @@ export const LoginForm: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
+
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {apiError && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-          {apiError}
+    <div className="min-h-screen flex justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 mt-16 mb-8">
+        <div className="flex flex-col items-center mb-6">
+          <div className="bg-indigo-100 rounded-full p-3 mb-2">
+            <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v7m0 0H7m5 0h5" />
+            </svg>
+          </div>
+          
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {apiError && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                {apiError}
+              </div>
+            )}
+
+            <Input
+              {...register('email')}
+              type="email"
+              label="Email Address"
+              placeholder="Enter your email"
+              error={errors.email?.message}
+              autoComplete="email"
+            />
+
+            <Input
+              {...register('password')}
+              type="password"
+              label="Password"
+              placeholder="Enter your password"
+              error={errors.password?.message}
+              autoComplete="current-password"
+            />
+
+            <Button
+              type="submit"
+              className="w-full"
+              isLoading={isLoading}
+              disabled={isLoading}
+            >
+              Sign In
+            </Button>
+
+            <div className="text-center">
+              <p className="text-sm text-gray-600">
+                Don't have an account?{' '}
+                <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500 transition">
+                  Sign up here
+                </a>
+              </p>
+            </div>
+          </form>
         </div>
-      )}
-      
-      <Input
-        {...register('email')}
-        type="email"
-        label="Email Address"
-        placeholder="Enter your email"
-        error={errors.email?.message}
-        autoComplete="email"
-      />
-      
-      <Input
-        {...register('password')}
-        type="password"
-        label="Password"
-        placeholder="Enter your password"
-        error={errors.password?.message}
-        autoComplete="current-password"
-      />
-      
-      <Button
-        type="submit"
-        className="w-full"
-        isLoading={isLoading}
-        disabled={isLoading}
-      >
-        Sign In
-      </Button>
-      
-      <div className="text-center">
-        <p className="text-sm text-gray-600">
-          Don't have an account?{' '}
-          <a href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
-            Sign up here
-          </a>
-        </p>
       </div>
-    </form>
+    </div>
   );
+
 };
